@@ -11,6 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 // routes
+const routes = require('./src/routes/routes');
+app.use('/api', routes);
 
 // server
 const port = process.env.PORT; //setting up the port 
