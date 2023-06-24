@@ -1,7 +1,6 @@
  require('dotenv').config();
  const express = require('express'); //import
  const bodyParser = require('body-parser'); //import
- const jwt = require('jsonwebtoken'); //import
 
  const app = express(); //initialize
 
@@ -9,6 +8,7 @@
 app.use(express.json()); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static('public'));
 
 // routes
 const routes = require('./src/routes/routes');
