@@ -1,7 +1,7 @@
 //create a helper and validte the inputs tomorrow
 //create a feature for login logout with authentication jwt
-
 //learn the refresh and validate token
 //apply a security for api based on authentication
 //make middleware, apply to endpoints to protect it
+
 //create a create new product with image
