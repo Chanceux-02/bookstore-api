@@ -44,9 +44,10 @@ const store = async(req, res)=>{
         }
 
         const {bookname, desc} = req.body;
-        const {img} = req.file;
-        await storeModel.storeBook(bookname, desc, img);
-        res.status(200).send('User created successfuly!');
+        const {filename} = req.file;
+
+        await storeModel.storeBook(bookname, desc, filename);
+
     } catch (error) {
         res.status(500).send('There was an error for creating user in the proceess');
     }
