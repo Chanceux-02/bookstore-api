@@ -20,7 +20,7 @@ const con = require('../database/db');
             return { success: false, message: 'Invalid username or password' };
         }
 
-        const token = jwt.sign({userId: users.id}, process.env.KEY, {expiresIn: '1hr'});
+        const token = jwt.sign({userId: users.id}, process.env.KEY, {expiresIn: '7d'});
         // const refreshToken = jwt.sign({userId: users.id}, process.env.REFRESH_KEY, {expiresIn: '7d'});
         console.log('Log in successfully')
         return { success: true, token};
