@@ -4,5 +4,6 @@
 //apply a security for api based on authentication
 //make middleware, apply to endpoints to protect it
 //create a create new product with image
+//delete product api feature
 
-// delete product api feature
+//edit  book data

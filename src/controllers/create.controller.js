@@ -2,6 +2,7 @@ const createModel = require('../models/create.model');
 const storeModel = require('../models/store.model');
 const bcrypt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
+const fs = require('fs');
 
 const fillUser = async(req, res)=>{
     
@@ -30,12 +31,15 @@ const fillUser = async(req, res)=>{
 }
 
 const store = async(req, res)=>{
-    
     try {
         await Promise.all([
             body('bookname').notEmpty().withMessage('Fullname is required!').exists().trim().escape().run(req),
             body('desc').notEmpty().withMessage('Fullname is required!').exists().trim().escape().run(req),
         ]);
+
+        if (!req.file) {
+            return res.status(400).json({ message: 'No file uploaded' });
+        }
 
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
@@ -45,8 +49,13 @@ const store = async(req, res)=>{
 
         const {bookname, desc} = req.body;
         const {filename} = req.file;
-
         await storeModel.storeBook(bookname, desc, filename);
+
+        const filePath = 'public/images/' + req.file.filename;
+        const fileData = fs.readFileSync(req.file.path);
+    
+        fs.writeFileSync(filePath, fileData);
+        fs.unlinkSync(req.file.path);
 
     } catch (error) {
         res.status(500).send('There was an error for creating user in the proceess');
