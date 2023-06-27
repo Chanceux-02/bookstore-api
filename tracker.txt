@@ -5,5 +5,10 @@
 //make middleware, apply to endpoints to protect it
 //create a create new product with image
 //delete product api feature
+//fetch all users
+//fetch all books
+//fetch one user
+//fetch one book
 
-//edit  book data
+//edit book data
+//edit user data
