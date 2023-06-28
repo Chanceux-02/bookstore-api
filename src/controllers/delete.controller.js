@@ -19,7 +19,26 @@ const deleteBook = async (req, res)=>{
         res.status(500).send('There was an error for deleting books in the proceess');
     }
 }
+const deleteUser = async (req, res)=>{
+    try{
+        await body('id').notEmpty().withMessage('Book id is missing!').run(req);
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log('There was an error passing an user\'s id');
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        const {id} = req.body;
+        await deleteBookModel.deleteUser(id);
+        return res.status(200).json({ message: 'User data deleted successfully' });
+
+    }catch(err){
+        res.status(500).send('There was an error for deleting user\'s in the proceess');
+    }
+}
 
 module.exports = {
-    deleteBook
+    deleteBook,
+    deleteUser
 }

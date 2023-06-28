@@ -19,17 +19,19 @@ router.get('/single-book/:id', authMiddleware, getController.singleBook);
 router.get('/single-user/:id', authMiddleware, getController.singleUser);
 
 router.delete('/delete-product', authMiddleware, deleteBookController.deleteBook);
+router.delete('/delete-user', authMiddleware, deleteBookController.deleteUser);
 
-router.delete('/edit-book', authMiddleware, deleteBookController.deleteBook);
 router.put('/edit-user', authMiddleware, editController.updateUserProcess);
+router.put('/edit-book', [authMiddleware, upload.single('img')], (req, res)=>{
+        editController.updateBookProcess(req, res);
+        return res.status(200).json({ message: 'Book updated successfully' });
+});
 
 router.post('/register', createController.fillUser);
 router.post('/login', authController.login);
-router.post('/store', [authMiddleware, upload.single('img')], 
-    (req, res)=>{
+router.post('/store', [authMiddleware, upload.single('img')], (req, res)=>{
         createController.store(req, res);
         return res.status(200).json({ message: 'Book added successfully' });
-    
     }
 );
 
