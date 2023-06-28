@@ -9,6 +9,7 @@ const createController = require('../controllers/create.controller');
 const authController = require('../controllers/auth.controller');
 const deleteBookController = require('../controllers/delete.controller');
 const getController = require('../controllers/get.controller');
+const editController = require('../controllers/edit.controller');
 
 const upload = multer({ storage: preStoreHelper.store });
 
@@ -17,9 +18,13 @@ router.get('/all-users', authMiddleware, getModel.fetchUsers);
 router.get('/single-book/:id', authMiddleware, getController.singleBook);
 router.get('/single-user/:id', authMiddleware, getController.singleUser);
 
-router.post('/register', authMiddleware, createController.fillUser);
-router.post('/login', authController.login);
 router.delete('/delete-product', authMiddleware, deleteBookController.deleteBook);
+
+router.delete('/edit-book', authMiddleware, deleteBookController.deleteBook);
+router.put('/edit-user', authMiddleware, editController.updateUserProcess);
+
+router.post('/register', createController.fillUser);
+router.post('/login', authController.login);
 router.post('/store', [authMiddleware, upload.single('img')], 
     (req, res)=>{
         createController.store(req, res);
