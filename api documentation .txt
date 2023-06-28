@@ -1,0 +1,79 @@
+post register
+http://localhost:5000/api/register
+
+body: json raw
+{
+    "fullname": "",
+    "email": "",
+    "password": "•••••••"
+}
+
+
+POST login
+http://localhost:5000/api/login
+Authorization: Bearer Token
+body: json raw
+{
+    "email": "dwaynehalvorson@email.com",
+    "password": "louie"
+}
+
+POST store
+http://localhost:5000/api/store
+Authorization: Bearer Token
+body: form-data
+img = /D:/Downloads/laravel-svgrepo-com.png
+bookname = laravel
+desc = Laravel learning modules
+
+DELETE delete book
+http://localhost:5000/api/delete-product
+Authorization: Bearer Token
+body: json raw
+{
+    "id": 23
+}
+
+DELETE delete user
+http://localhost:5000/api/delete-user
+Authorization: Bearer Token
+body: json raw
+{
+    "id": 3
+}
+
+GET fetch single book
+http://localhost:5000/api/single-book/25
+Authorization: Bearer Token
+
+GET fetch single user
+http://localhost:5000/api/single-user/25
+Authorization: Bearer Token
+
+GET fetch all books
+http://localhost:5000/api/all-books/25
+Authorization: Bearer Token
+
+GET fetch all books
+http://localhost:5000/api/all-users/25
+Authorization: Bearer Token
+
+PUT edit user's data
+http://localhost:5000/api/edit-user
+Authorization: Bearer Token
+body: raw json
+{
+    "fullname": "",
+    "email": "",
+    "password": "•••••••",
+    "id": 3
+}
+
+PUT edit book's data
+http://localhost:5000/api/edit-book
+Authorization: Bearer Token
+body: form-data
+img = /D:/Downloads/jquery-1-logo-svgrepo-com.png
+bname = poetry
+desc = some description
+id = 26
