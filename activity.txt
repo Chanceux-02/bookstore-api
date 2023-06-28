@@ -9,8 +9,6 @@
 
 ;Logging: Implement logging to track and monitor API activities for debugging and auditing purposes.
 
-;Rate Limiting: Apply rate limiting to prevent abuse or excessive requests from a single client.
-
 ;HTTPS: Use HTTPS for secure communication by obtaining an SSL certificate and configuring your server to enable secure connections.
 
 
@@ -27,5 +25,3 @@
 ;Step 4: User Sessions and Tokens
     When a user successfully logs in, generate a unique token (JWT) and include it in the response. This token should be stored on the client-side (e.g., in local storage or as an HTTP-only cookie) and sent with subsequent requests to authenticate the user.
 
-;Step 5: Logout
-    To implement logout functionality, clear the stored token on the client-side, making it invalid for future requests. You can also consider implementing token revocation mechanisms or token expiration for enhanced security.

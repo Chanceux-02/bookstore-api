@@ -10,6 +10,5 @@
 //fetch one user
 //fetch one book
 //edit user data
-
-//edit book data with updated image and delete the existing image
+//edit book data with updated image and delete he existing image
 //get the image first before inserting a new one
