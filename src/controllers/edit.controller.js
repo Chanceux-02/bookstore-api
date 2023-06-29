@@ -69,7 +69,30 @@ const updateBookProcess = async (req, res)=>{
     }
 }
 
+const editQuantityProcess = async(req, res)=>{
+    try {
+        await  Promise.all([
+            body('id').notEmpty().withMessage('Data id is missing!').run(req)
+        ]);
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            console.log('There was an error for validating id');
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        const {id} = req.body;
+        const {quantity} = req.body;
+        console.log(id, quantity)
+        await updateModel.updateItemQuantity(quantity, id);
+        res.status(200).send('Quantity updated successfuly!')
+    } catch (error) {
+        res.status(500).send('There was an error for updating quantity in the process ', error)
+    }
+}
+
 module.exports = {
     updateUserProcess,
-    updateBookProcess
+    updateBookProcess,
+    editQuantityProcess
 }

@@ -16,8 +16,25 @@ const singleUser =  async (req, res)=>{
     return res.status(200).json({ result });
 
 }
+const fetchCartProcess =  async (req, res)=>{
+   
+    const {uId} = req.params;
+    const {bookId} = req.params;   
+
+    const result = await getModel.fetchCart(uId, bookId);
+    return res.status(200).json({ result });
+}
+const fetchUserAddedCartsProcess =  async (req, res)=>{
+   
+    const {uId} = req.params;
+
+    const result = await getModel.fetchUserAddedCarts(uId);
+    return res.status(200).json({ result });
+}
 
 module.exports = {
     singleBook,
-    singleUser
+    singleUser,
+    fetchCartProcess,
+    fetchUserAddedCartsProcess
 }

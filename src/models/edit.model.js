@@ -29,8 +29,19 @@ const path = require('path');
         res.status(500).send('There was an error updating a user\'s data ', error);
     }
 }
+ const updateItemQuantity = async( quantity, id)=>{
+    const query = "UPDATE cart SET quantity = ?  WHERE id = ?;";
+    try {
+        await con(query, [quantity, id]);
+        
+    } catch (error) {
+        console.log('There was an error updating an item\'s quantity ',error);
+        res.status(500).send('There was an error updating an item\'s quantity ', error);
+    }
+}
 
 module.exports = {
     updateBookData,
-    updateUserData
+    updateUserData,
+    updateItemQuantity
 }

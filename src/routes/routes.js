@@ -17,10 +17,14 @@ router.get('/all-books', authMiddleware, getModel.fetchBooks);
 router.get('/all-users', authMiddleware, getModel.fetchUsers);
 router.get('/single-book/:id', authMiddleware, getController.singleBook);
 router.get('/single-user/:id', authMiddleware, getController.singleUser);
+router.get('/fetch-single-cart/:uId/:bookId', authMiddleware, getController.fetchCartProcess);
+router.get('/fetch-user-cart/:uId', authMiddleware, getController.fetchUserAddedCartsProcess);
 
 router.delete('/delete-product', authMiddleware, deleteBookController.deleteBook);
 router.delete('/delete-user', authMiddleware, deleteBookController.deleteUser);
+router.delete('/remove-to-cart', authMiddleware, deleteBookController.removeToCartProcess);
 
+router.patch('/edit-quantity', authMiddleware, editController.editQuantityProcess);
 router.put('/edit-user', authMiddleware, editController.updateUserProcess);
 router.put('/edit-book', [authMiddleware, upload.single('img')], (req, res)=>{
         editController.updateBookProcess(req, res);
@@ -29,6 +33,8 @@ router.put('/edit-book', [authMiddleware, upload.single('img')], (req, res)=>{
 
 router.post('/register', createController.fillUser);
 router.post('/login', authController.login);
+router.post('/place-order', authMiddleware, createController.placeOrderProcess);
+router.post('/add-to-cart', authMiddleware, createController.addToCartProcess);
 router.post('/store', [authMiddleware, upload.single('img')], (req, res)=>{
         createController.store(req, res);
         return res.status(200).json({ message: 'Book added successfully' });

@@ -36,10 +36,31 @@ const con = require('../database/db');
         res.status(500).send('There was an error for fetching all users ', error);
     }
 }
+const fetchCart = async (u_id, book_id)=>{
+    const query = "SELECT * FROM cart WHERE u_id = ? AND book_id = ?;";
+    try {
+        const results = await con(query, [u_id, book_id]);
+        return results;
+    } catch (error) {
+        res.status(500).send('There was an error for fetching cart data ', error);
+    }
+}
+const fetchUserAddedCarts = async (u_id)=>{
+    const query = "SELECT * FROM cart WHERE u_id = ?;";
+    try {
+        const results = await con(query, [u_id]);
+        return results;
+    } catch (error) {
+        res.status(500).send('There was an error for fetching cart data ', error);
+    }
+}
 
 module.exports = {
     fetchSingleBook,
     fetchSingleUser,
     fetchBooks,
-    fetchUsers
+    fetchUsers,
+    fetchCart,
+    fetchUserAddedCarts
+
 }

@@ -12,3 +12,10 @@
 //edit user data
 //edit book data with updated image and delete he existing image
 //get the image first before inserting a new one
+//add to cart
+//remove to cart
+//show the cart
+//show the cart with a single user
+//edit the quantity of the cart
+
+//place order
